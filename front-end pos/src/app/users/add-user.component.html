@@ -1,0 +1,123 @@
+
+<!--/.row-->
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="card">
+        <div class="card-header">
+          <i class="fa fa-align-justify"></i> Add User to the System
+          <button class="btn btn-sm btn-default pull-right" 
+            popover="This panel allows one to add user details and assign permissions." 
+             placement="bottom" triggers="focus"
+          ><i class="fa fa-question"></i> help</button>
+        </div>
+        
+        <div class="card-block">
+            <form (ngSubmit)="addUser()" #f="ngForm" novalidate>
+                <div class="row">
+                  <div class="col-lg-6">
+                    <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !username.valid }">
+                      <label for="username">UserName :</label>
+                      <input type="text" class="form-control" name="username" [(ngModel)]="model.username" #username="ngModel" required/>
+                       <div *ngIf="f.submitted && !username.valid" class="help-block slideUp">Username is required</div>
+                    </div>
+
+                    <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !first_name.valid }">
+                      <label for="first_name">FirstName :</label>
+                      <input type="text" class="form-control" name="first_name" [(ngModel)]="model.first_name" #first_name="ngModel" required/>
+                       <div *ngIf="f.submitted && !first_name.valid" class="help-block slideUp">First Name is required</div>
+                    </div>
+
+                    <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !last_name.valid }">
+                      <label for="last_name">LastName :</label>
+                      <input type="text" class="form-control" name="last_name" [(ngModel)]="model.last_name" #last_name="ngModel" required/>
+                       <div *ngIf="f.submitted && !last_name.valid" class="help-block slideUp">Last Name is required</div>
+                    </div>
+
+                    <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !email.valid }">
+                      <label for="email">Email :</label>
+                      <input type="text" class="form-control" name="email" [(ngModel)]="model.email" #email="ngModel" required/>
+                       <div *ngIf="f.submitted && !email.valid" class="help-block slideUp">Email is required</div>
+                    </div>
+
+                    <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !id_no.valid }">
+                      <label for="id_no">Id No :</label>
+                      <input type="text" class="form-control" name="id_no" [(ngModel)]="model.id_no" #id_no="ngModel" required/>
+                       <div *ngIf="f.submitted && !id_no.valid" class="help-block slideUp">Id No is required</div>
+                    </div>
+
+                    <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !phone.valid }">
+                      <label for="phone">Phone :</label>
+                      <input type="text" class="form-control" name="phone" [(ngModel)]="model.phone" #phone="ngModel" required/>
+                       <div *ngIf="f.submitted && !phone.valid" class="help-block slideUp">Phone is required</div>
+                    </div>
+                  </div>
+
+                  <div class="col-lg-6">
+                     <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !password.valid }">
+                          <label for="password">Password: </label>
+                          <input type="password" class="form-control" name="password" [(ngModel)]="model.password" #password="ngModel" required />
+                          <div *ngIf="f.submitted && !password.valid" class="help-block slideUp">Password is required</div>
+                      </div>
+
+                      <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !confirm_password.valid }">
+                          <label for="confirm_password">Confirm Password: </label>
+                          <input type="password" class="form-control" name="confirm_password" [(ngModel)]="model.confirm_password" #confirm_password="ngModel" required />
+                          <div *ngIf="f.submitted && !confirm_password.valid" class="help-block slideUp">Confirm Password is required</div>
+                      </div>
+                    <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !location.valid }">
+                      <label for="location">Location: </label>
+                      <input type="text" class="form-control" name="location" [(ngModel)]="model.location" #location="ngModel" required/>
+                      <div *ngIf="f.submitted && !location.valid" class="help-block slideUp">Location is required</div>
+                    </div>
+
+                    <div class="form-group">
+                      <label for="role">Role:</label>
+                      <select class="form-control" id="role"
+                              required
+                              [(ngModel)]="model.role" name="role"
+                              #role="ngModel">
+                        <option>select ..</option>
+                        <option *ngFor="let rol of roles" [value]="rol">{{rol}}</option>
+                      </select>
+                      <div *ngIf="f.submitted && !model.role" class="help-block slideUp">Role is required</div>
+                    </div>
+
+                    <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !avatar.valid }">
+                      <label for="avatar">Image (avatar): </label>
+                      <input type="text" class="form-control" name="avatar" [(ngModel)]="model.avatar" #avatar="ngModel" required/>
+                      <div *ngIf="f.submitted && !avatar.valid" class="help-block slideUp">Avatar is required</div>
+                    </div>
+
+                  </div>
+                   
+                </div><!--/.row-->
+
+                <div style="margin:20px auto;">
+                </div>
+
+              
+
+                <div class="row">
+                  <div class="col-lg-12 text-center">
+                    <button class="btn btn-danger" (click)="goBack()">Cancel</button>
+                    <button type="submit" [disabled]="!f.form.valid && loading" class="btn btn-primary">Add User</button>
+                    <img *ngIf="loading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05
+                    FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOg
+                    gZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQ
+                    lFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xS
+                    UJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhH
+                    BGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz
+                    8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3l
+                    QGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxg
+                    MLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAO
+                    wAAAAAAAAAAAA==" />
+                  </div>
+                </div><!--/.row-->
+            </form>
+
+        </div>
+      </div>
+    </div>
+    <!--/.col-->
+  </div>
+  <!--/.row-->

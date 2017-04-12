@@ -1,0 +1,127 @@
+
+<!--/.row-->
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="card">
+        <div class="card-header">
+          <i class="fa fa-align-justify"></i> Combined All Table
+          <button class="btn btn-sm btn-default pull-right" 
+            popover="A detailed list of all users. click the add button to add a user through a popup. click a user to view details about the user.
+            click the permissions icon to assign permissions, the edit pencil icon to edit user's details and the delete trash icon to delete user" 
+             placement="bottom" triggers="focus"
+          ><i class="fa fa-question"></i> help</button>
+        </div>
+        
+        <div class="card-block">
+
+            <nav>
+            <ul class="pagination">
+              <input type="text" class="form-control" id="search" placeholder="Search User" />
+              <div style="margin-left:20px;">
+                <button class="btn btn-primary" (click)="goToAddUser()">Add User</button>
+              </div>
+            </ul>
+          </nav>
+
+          <table class="table table-hover table-sm table-outline mb-0">
+            <thead class="thead-default">
+              <tr>
+                <!--<th class="text-center"><i class="icon-people"></i></th>-->
+                <th>Username</th>
+                <th class="text-center hidden-sm-down">Email</th>
+                <th class="text-center">View Info</th>
+                <th class="text-center">Edit</th>
+                <th class="text-center">Delete</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let user of users">
+                <!--<td class="text-center">
+                  <div class="avatar">
+                    <img [src]="user.image" class="img-avatar" alt="admin@bootstrapmaster.com">
+                  </div>
+                </td>-->
+                <td>
+                  <div>{{ user.username }}</div>
+                </td>
+
+                <td class="hidden-sm-down">
+                  <div>{{ user.email }}</div>
+                </td>
+
+                <td class="text-center" (click)="goToUserDetails(user.id)">
+                  <i class="fa fa-eye"></i>
+                </td>
+                <td class="text-center" (click)="show(user.id)">
+                  <i class="fa fa-pencil"></i>
+                </td>
+                <td class="text-center" (click)="deleteUser(user)">
+                  <i class="fa fa-trash-o"></i>
+                </td>
+              </tr>                
+            </tbody>
+          </table>
+
+          <nav style="margin-top: 10px;">
+            <ul class="pagination">
+              <li class="page-item"><a class="page-link" href="#">Prev</a></li>
+              <li class="page-item active">
+                <a class="page-link" href="#">1</a>
+              </li>
+              <li class="page-item"><a class="page-link" href="#">2</a></li>
+              <li class="page-item"><a class="page-link" href="#">3</a></li>
+              <li class="page-item"><a class="page-link" href="#">4</a></li>
+              <li class="page-item"><a class="page-link" href="#">Next</a></li>
+            </ul>
+          </nav>
+
+        </div>
+      </div>
+    </div>
+    <!--/.col-->
+  </div>
+  <!--/.row-->
+
+  <div class="modal fade" bsModal #createModal="bs-modal" [config]="{backdrop: 'static'}"
+     tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-info">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title text-center">Add User</h4>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="createModal.hide()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form name="form" (ngSubmit)="createUser(action)" #createUserForm="ngForm" novalidate>
+      <div class="modal-body">
+
+            <div class="form-group">
+              <label for="nf-username">Username</label>
+              <input type="text" id="nf-username" name="nf-username" class="form-control" placeholder="Enter Username.."
+              [(ngModel)]="model.username" #username="ngModel" required>
+              <div [hidden]="username.valid || username.pristine"  class="alert alert-danger"> Username is required </div>
+            </div>
+
+            <div class="form-group">
+              <label for="nf-email">Email</label>
+              <input type="text" id="nf-email" name="nf-email" class="form-control" placeholder="Enter Email.."
+              [(ngModel)]="model.email" #email="ngModel" required>
+              <div [hidden]="email.valid || email.pristine"  class="alert alert-danger"> Email is required </div>
+            </div>
+
+            <div class="form-group">
+              <label for="nf-password">Password</label>
+              <input type="password" id="nf-password" name="nf-password" class="form-control" placeholder="Enter Password.."
+              [(ngModel)]="model.password" #password="ngModel" required>
+              <div [hidden]="password.valid || password.pristine"  class="alert alert-danger"> Password is required </div>
+            </div>
+          
+      </div>
+      <div class="modal-footer text-center">
+        <button type="button" class="btn btn-secondary float-left" (click)="createModal.hide()">Close</button>
+        <button type="submit" class="btn btn-primary float-right" [ladda]="loading" [disabled]="!createUserForm.form.valid">Add</button>
+      </div>
+      </form>
+    </div>
+  </div>
+</div>

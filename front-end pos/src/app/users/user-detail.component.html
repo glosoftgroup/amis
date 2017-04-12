@@ -1,0 +1,163 @@
+
+
+<!--/.row-->
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="card">
+        <div class="card-header">
+          <i class="fa fa-user"></i> User Details
+          <div class="pull-right">
+          <button class="btn btn-sm btn-primary" (click)="goBack()"><i class="fa fa-arrow-left"></i> Back</button>
+          <button class="btn btn-sm btn-default" 
+            popover="Below are the basic user's details on the left panel and the right panel 
+            consists of the attendance chart of the user and the priviledges to access certain modules" 
+             placement="bottom" triggers="focus"
+          ><i class="fa fa-question"></i> help</button>
+          </div>
+        </div>
+        
+        <div class="card-block">
+           <div class="row">
+               <div class="col-lg-4 text-left">
+                   <div class="row">
+                     <div class="col-lg-12">
+                       <div class="avatars">
+                         <img src="assets/img/avatars/1.jpg" class="img-user-avatar img-fluid" alt="admin@bootstrapmaster.com" src="assets/img/avatars/1.jpg">
+                       </div>
+                       <p><i> Last Login: 12/23/2017</i></p>
+                        
+                     </div>
+                   </div>
+                   
+                   <div class="row">
+                     <div class="col-lg-12 text-left">
+                        <h6>Basic Info:</h6>
+                        <hr/>
+                       <ul style="list-style: none">
+                        <p><i class="fa fa-user"></i> Name: {{user.firstname}} {{user.lastname}}</p>
+                        <!--<p><i class="fa fa-newspaper-o"></i> Id No: 21230122</p>-->
+                        <p><i class="fa fa-envelope"></i> Email: {{user.email}}</p>
+                        <!--<p><i class="fa fa-mobile"></i> Mobile: 0723891228</p>
+                        <p><i class="fa fa-map-marker"></i> Location: Kahawa West</p>
+                        <p><i class="fa fa-hashtag"></i> Role: Staff</p>
+                        <p><i class="fa fa-calendar-check-o"></i> Date Started: 12/23/2017</p>-->
+                       </ul>
+                     </div>
+                   </div>
+               </div>
+
+               <div class="col-lg-8">
+                   <div class="row">
+                       <div class="col-lg-12">
+                           <h6>User Performance:</h6>
+                            <hr/>
+                       </div>
+                   </div>
+                   <div class="row">
+                        <div class="col-lg-6 col-sm-6">
+                            <div class="card card-inverse card-warning">
+                                <div class="card-block pb-0">
+                                <div class="btn-group float-right" dropdown>
+                                    <button type="button" class="btn btn-transparent dropdown-toggle p-0" dropdownToggle>
+                                    <i class="icon-settings"></i>
+                                    </button>
+                                    <div class="dropdown-menu dropdown-menu-right" dropdownMenu>
+                                    <a class="dropdown-item" href="#">Week</a>
+                                    <a class="dropdown-item" href="#">Month</a>
+                                    <a class="dropdown-item" href="#">Year</a>
+                                    </div>
+                                </div>
+                                <h4 class="mb-0">KShs 9823</h4>
+                                <p>Average Sales</p>
+                                </div>
+                                <div class="chart-wrapper px-1" style="height:70px;">
+                                <canvas baseChart class="chart"
+                                [datasets]="barChart1Data"
+                                [labels]="barChart1Labels"
+                                [options]="barChart1Options"
+                                [colors]="barChart1Colours"
+                                [legend]="barChart1Legend"
+                                [chartType]="barChart1Type"
+                                (chartHover)="chartHovered($event)"
+                                (chartClick)="chartClicked($event)"></canvas>
+                                </div>
+                            </div>
+                        </div><!--/.col-->
+                        <div class="col-lg-6 col-sm-6">
+                       <div class="card card-inverse card-primary">
+                            <div class="card-block pb-0">
+                            <button type="button" class="btn btn-transparent p-0 float-right">
+                                <i class="icon-location-pin"></i>
+                            </button>
+                            <h4 class="mb-0">70%</h4>
+                            <p>Attendance</p>
+                            </div>
+                            <div class="chart-wrapper px-1" style="height:70px;">
+                            <canvas baseChart class="chart"
+                                [datasets]="lineChart2Data"
+                                [labels]="lineChart2Labels"
+                                [options]="lineChart2Options"
+                                [colors]="lineChart2Colours"
+                                [legend]="lineChart2Legend"
+                                [chartType]="lineChart2Type"
+                                (chartHover)="chartHovered($event)"
+                                (chartClick)="chartClicked($event)">
+                            </canvas>
+                            </div>
+                        </div>
+                     </div>
+                   </div>
+
+                   <!--<div class="row">
+                     <div class="col-lg-12">
+                       <div class="card card-inverse card-primary">
+                            <div class="card-block pb-0">
+                            <button type="button" class="btn btn-transparent p-0 float-right">
+                                <i class="icon-location-pin"></i>
+                            </button>
+                            <h4 class="mb-0">70%</h4>
+                            <p>Attendance</p>
+                            </div>
+                            <div class="chart-wrapper px-1" style="height:70px;">
+                            <canvas baseChart class="chart"
+                                [datasets]="lineChart2Data"
+                                [labels]="lineChart2Labels"
+                                [options]="lineChart2Options"
+                                [colors]="lineChart2Colours"
+                                [legend]="lineChart2Legend"
+                                [chartType]="lineChart2Type"
+                                (chartHover)="chartHovered($event)"
+                                (chartClick)="chartClicked($event)">
+                            </canvas>
+                            </div>
+                        </div>
+                     </div>
+                   </div>-->
+                   
+                   <div class="row">
+                     <div class="col-lg-12">
+                       <h6>Granted Permissions:</h6>
+                        <hr/>
+                        <ol>
+                            <li>Users Module</li>
+                            <ul>
+                                <li>Users</li>
+                                <li>Users Statistics</li>   
+                            </ul>           
+                            <li>POS Terminal</li>
+                            <ul>
+                                <li>Sell</li>
+                                <li>Invoice</li>   
+                            </ul>
+                        </ol>
+                     </div>
+                   </div>
+               </div>
+           </div>
+
+        </div><!--/.card-block-->
+      </div>
+    </div>
+    <!--/.col-->
+  </div>
+  <!--/.row-->
